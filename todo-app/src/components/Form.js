@@ -5,13 +5,21 @@ export default function Form(props) {
   // const [state, dispatch] = useReducer(reducer, initialState);
   const onValueChange = e => {
     props.dispatch({
-      type: 'INPUT_CHANGE',
+      type: "INPUT_CHANGE",
       payload: e.target.value
     });
   };
   const onFormSubmit = event => {
+    console.log(props.state.todoList);
     event.preventDefault();
-    props.dispatch({ type: 'SUBMIT' });
+    props.dispatch({
+      type: "SUBMIT",
+      payload: {
+        newId: props.state.todoList.length + 1,
+        task: props.state.todoValue
+      }
+    });
+    props.dispatch({type: 'RESET'});
   };
   return (
     <form onSubmit={onFormSubmit}>

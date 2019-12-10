@@ -1,7 +1,7 @@
 const todoList = [
-  { id: "1", name: "sweeping", completed: false },
-  { id: "2", name: "mopping", completed: false },
-  { id: "3", name: "washing dishes", completed: false }
+  { id: 1, name: "sweeping", completed: false },
+  { id: 2, name: "mopping", completed: false },
+  { id: 3, name: "washing dishes", completed: false }
 ];
 
 export const initialState = {
@@ -37,9 +37,15 @@ export const reducer = (state, action) => {
         ...state,
         todoList: [
           ...state.todoList,
-          { id: 4, name: "anything", completed: false }
+          {
+            id: action.payload.newId,
+            name: action.payload.task,
+            completed: false
+          }
         ]
       };
+      case 'RESET':
+          return {...state, todoValue: ''}
     // other cases etc
     default:
       return state;
