@@ -22,7 +22,7 @@ export default function Form(props) {
     props.dispatch({ type: "RESET" });
   };
 
-  const clearCompleted = (event) => {
+  const clearCompleted = event => {
     event.stopPropagation();
     props.dispatch({
       type: "CLEAR_COMPLETED"
@@ -30,19 +30,20 @@ export default function Form(props) {
   };
 
   return (
-    <form onSubmit={onFormSubmit}>
-      <label>
-        Task:
-        <input
-          type="text"
-          name="name"
-          value={props.state.todoValue}
-          onChange={onValueChange}
-        />
-      </label>
-      <input type="submit" />
-      <button onClick={(event) => clearCompleted(event)}>Clear completed</button>
-    </form>
-
+    <div>
+      <form onSubmit={onFormSubmit}>
+        <label>
+          Task:
+          <input
+            type="text"
+            name="name"
+            value={props.state.todoValue}
+            onChange={onValueChange}
+          />
+        </label>
+        <input type="submit" />
+      </form>
+      <button onClick={event => clearCompleted(event)}>Clear completed</button>
+    </div>
   );
 }
