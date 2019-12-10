@@ -19,8 +19,16 @@ export default function Form(props) {
         task: props.state.todoValue
       }
     });
-    props.dispatch({type: 'RESET'});
+    props.dispatch({ type: "RESET" });
   };
+
+  const clearCompleted = (event) => {
+    event.stopPropagation();
+    props.dispatch({
+      type: "CLEAR_COMPLETED"
+    });
+  };
+
   return (
     <form onSubmit={onFormSubmit}>
       <label>
@@ -33,6 +41,8 @@ export default function Form(props) {
         />
       </label>
       <input type="submit" />
+      <button onClick={(event) => clearCompleted(event)}>Clear completed</button>
     </form>
+
   );
 }

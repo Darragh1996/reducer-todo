@@ -46,6 +46,10 @@ export const reducer = (state, action) => {
       };
       case 'RESET':
           return {...state, todoValue: ''}
+      case 'CLEAR_COMPLETED':
+          return {...state, todoList: todoList.filter((task) => {
+              return task.completed === false;
+          })}
     // other cases etc
     default:
       return state;
