@@ -1,20 +1,20 @@
 import React, { useReducer } from "react";
-import { initialState, reducer, MARK_TODO } from "../reducers/reducer";
+// import { initialState, reducer } from "../reducers/reducer";
 
 export default function TodoList(props) {
-  
-
-  const [state, dispatch] = useReducer(reducer, initialState);
+//   const [state, dispatch] = useReducer(reducer, initialState);
 
   const markTodo = (id, completed) => event =>
-    dispatch({
-      type: MARK_TODO,
+    props.dispatch({
+      type: "MARK_TODO",
       payload: { id, completed }
     });
 
+  console.log(props.state.todoList);
+
   return (
     <div className="component">
-      {state.todoList.map(todo => (
+      {props.state.todoList.map(todo => (
         <div key={todo.id} style={{ color: !todo.completed ? "red" : "green" }}>
           {todo.name}
           <button onClick={markTodo(todo.id, true)}>Mark complete</button>

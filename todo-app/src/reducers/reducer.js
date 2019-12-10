@@ -1,13 +1,12 @@
 const todoList = [
-  { id: '1', name: "sweeping", completed: false },
-  { id: '2', name: "mopping", completed: false },
-  { id: '3', name: "washing dishes", completed: false },
+  { id: "1", name: "sweeping", completed: false },
+  { id: "2", name: "mopping", completed: false },
+  { id: "3", name: "washing dishes", completed: false }
 ];
-
-export const MARK_TODO = "MARK_TODO";
 
 export const initialState = {
   todoList,
+  todoValue: ""
   // etc
 };
 
@@ -16,7 +15,7 @@ export const initialState = {
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case MARK_TODO:
+    case "MARK_TODO":
       return {
         ...state,
         todoList: state.todoList.map(todo => {
@@ -24,7 +23,22 @@ export const reducer = (state, action) => {
             return { ...todo, completed: action.payload.completed };
           }
           return todo;
-        }),
+        })
+      };
+    case "INPUT_CHANGE":
+      console.log(state.todoValue);
+      return {
+        ...state,
+        todoValue: action.payload
+      };
+    case "SUBMIT":
+      console.log("i was clicked");
+      return {
+        ...state,
+        todoList: [
+          ...state.todoList,
+          { id: 4, name: "anything", completed: false }
+        ]
       };
     // other cases etc
     default:
